@@ -9,7 +9,7 @@ export let  todos=[
     {
         id:2,
         name:"Two",
-        isDone: false,
+        isDone: true,
 
     },
     {

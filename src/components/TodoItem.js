@@ -1,22 +1,25 @@
 import React, { useState } from 'react'
 
 import { useDispatch } from 'react-redux';
-import { deletetodo, updatetodo, toogleTask} from '../redux/actions';
+import { deletetodo, updatetodo,toggleTask } from '../redux/actions';
 
 function TodoItem({todo}) {
     const [editable, setEditable] = useState(false)
     const [name, setName] = useState(todo.name)
     let dispatch = useDispatch();
-    
+   
+  
     return (
         <div className="container">
             <div className="row m-1">
                                              
 
-            <div>{todo.id.length > 1 ? todo.id[2] : todo.id}</div>
-                <div className="col" >
+            
+                <div className="col" style={{ background: todo.isDone ? "#00FF00" : "none" ,fontSize:"100%",fontVariant:"small-caps"}}
+                        onClick={() => dispatch(toggleTask(todo.id))} >
+                    
                     {editable ?
-                        <input className="form-control"
+                        <input   className="form-control"
                        
                             value={name}
                             onChange={(e) => {
@@ -27,7 +30,7 @@ function TodoItem({todo}) {
                         :
                         <h4>{todo.name}</h4>}
                 </div>
-      
+  
                 <button className="btn btn-primary m-2"
                     onClick={() => {
                         dispatch(updatetodo({
